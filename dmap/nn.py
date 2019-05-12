@@ -42,10 +42,10 @@ class MLP(object):
                                       self.sigma1_t, self.sigma2_t)
 
         L2 = T.sum(W1**2)+T.sum(W2**2)+T.sum(W3**2)
-        #cost_reg = cost_t+alpha*L2
-        #updates = adam(cost_reg, [W1, W2, W3, b1, b2, b3], learning_rate=lr)
+        cost_reg = cost_t+alpha*L2
+        updates = adam(cost_reg, [W1, W2, W3, b1, b2, b3], learning_rate=lr)
 
-        updates = adam(cost_t, [W1, W2, W3, b1, b2, b3], learning_rate=lr)
+        #updates = adam(cost_t, [W1, W2, W3, b1, b2, b3], learning_rate=lr)
         self.update_func = theano.function(\
                         [self.x_t, self.w_t, self.sigma1_t,
                          self.sigma2_t], [cost_t, l3],
